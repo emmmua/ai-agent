@@ -82,14 +82,14 @@
             <artifactId>langchain4j-community-dashscope</artifactId>
             <version>1.0.0-beta4</version>
         </dependency>
-    </dependencies>
 
-    <!-- langchain4j-ollama: https://java2ai.com/docs/1.0.0-M6.1/models/ollama/?spm=5176.29160081.0.0.2856aa5cmbNZbo -->
-    <dependency>
-        <groupId>org.springframework.ai</groupId>
-        <artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
-        <version>1.0.0-M6</version>
-    </dependency>
+        <!-- langchain4j-ollama: https://java2ai.com/docs/1.0.0-M6.1/models/ollama/?spm=5176.29160081.0.0.2856aa5cmbNZbo -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
+            <version>1.0.0-M6</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
