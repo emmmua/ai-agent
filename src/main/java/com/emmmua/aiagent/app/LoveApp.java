@@ -1,5 +1,6 @@
 package com.emmmua.aiagent.app;
 
+import com.emmmua.aiagent.advisor.MyLoggerAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -27,7 +28,7 @@ public class LoveApp {
     /**
      * 初始化chatClient
      *
-     * @param dashscopeChatModel 模型
+     * @param dashscopeChatModel 模型（dashscopeChatModel是阿里的模型，为我们配置文件用的是dashscope，所以这里注入就能使用）
      */
     public LoveApp(ChatModel dashscopeChatModel) {
         // 初始化一个基于内存的对话记忆
@@ -35,7 +36,11 @@ public class LoveApp {
         chatClient = ChatClient.builder(dashscopeChatModel)
                 .defaultSystem(SYSTEM_PROMPT)
                 .defaultAdvisors(
-                        new MessageChatMemoryAdvisor(chatMemory)
+                        new MessageChatMemoryAdvisor(chatMemory),
+                        // 自定义的日志记录，可按需开启
+                        new MyLoggerAdvisor()
+                        // 自定义Re2，可按需开启
+//                        new ReReadingAdvisor()
                 )
                 .build();
     }
