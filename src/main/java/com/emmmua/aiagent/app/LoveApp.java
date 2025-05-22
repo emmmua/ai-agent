@@ -10,6 +10,8 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY;
 
@@ -64,5 +66,34 @@ public class LoveApp {
         String text = chatResponse.getResult().getOutput().getText();
         log.info("text: {}", text);
         return text;
+    }
+
+    /**
+     * 恋爱报告结构体
+     *
+     * @param title
+     * @param suggestions 建议列表
+     */
+    record LoveReport(String title, List<String> suggestions) {
+
+    }
+
+    /**
+     * AI 恋爱报告功能（实战结构化输出）
+     *
+     * @param question 聊天问题
+     * @param chatId   会话ID
+     * @return 回复文本
+     */
+    public LoveReport chatWithReport(String question, String chatId) {
+        LoveReport loveReport = chatClient.prompt()
+                .system(SYSTEM_PROMPT + "每次对话后都要生成恋爱结果，标题为{用户名}的恋爱报告，内容为建议列表")
+                .user(question)
+                .advisors(spec -> spec
+                        .param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
+                        .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
+                .call()
+                .entity(LoveReport.class);
+        return loveReport;
     }
 }
