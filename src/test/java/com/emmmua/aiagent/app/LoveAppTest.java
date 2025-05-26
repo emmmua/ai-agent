@@ -13,7 +13,7 @@ class LoveAppTest {
     private LoveApp loveApp;
 
     @Test
-    void testChat() {
+    void chat() {
         String chatId = UUID.randomUUID().toString();
 
         // 第一轮
@@ -31,11 +31,20 @@ class LoveAppTest {
 
 
     @Test
-    void testChatWithReport() {
+    void chatWithReport() {
         String chatId = UUID.randomUUID().toString();
 
         String message = "你好，我是Fivk，我想让另一半（清清）更爱我，但我不知道该怎么做";
         LoveApp.LoveReport loveReport = loveApp.chatWithReport(message, chatId);
         Assertions.assertNotNull(loveReport);
+    }
+
+    @Test
+    void chatWithRag() {
+        String chatId = UUID.randomUUID().toString();
+
+        String message = "我已经结婚了，但是婚后关系不太亲密，怎么办？";
+        String answer = loveApp.chatWithRag(message, chatId);
+        Assertions.assertNotNull(answer);
     }
 }
