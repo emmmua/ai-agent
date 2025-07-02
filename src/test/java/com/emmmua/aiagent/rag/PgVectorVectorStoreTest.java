@@ -20,7 +20,7 @@ public class PgVectorVectorStoreTest {
      * 解决方法：删除spring-ai-ollama-spring-boot-starter依赖文件，或者案例的依赖
      */
     @Resource
-    VectorStore vectorStore;
+    VectorStore pgVectorVectorStore;
 
     @Test
     void test() {
@@ -30,10 +30,10 @@ public class PgVectorVectorStoreTest {
                 new Document("深度学习技术推动了图像识别和自然语言处理领域的突破性进展。", Map.of("meta2", "AI技术")));
 
         // 添加文档
-        vectorStore.add(documents);
+        pgVectorVectorStore.add(documents);
 
         // 相似度查询
-        List<Document> results = vectorStore.similaritySearch(SearchRequest.builder().query("学习").topK(2).build());
+        List<Document> results = pgVectorVectorStore.similaritySearch(SearchRequest.builder().query("学习").topK(2).build());
         Assertions.assertNotNull(results);
     }
 }

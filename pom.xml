@@ -83,12 +83,12 @@
             <version>1.1.0-beta7</version>
         </dependency>
 
-        <!-- langchain4j-ollama: https://java2ai.com/docs/1.0.0-M6.1/models/ollama/?spm=5176.29160081.0.0.2856aa5cmbNZbo -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.ai</groupId>-->
-<!--            <artifactId>spring-ai-ollama-spring-boot-starter</artifactId>-->
-<!--            <version>1.0.0-M6</version>-->
-<!--        </dependency>-->
+        <!-- langchain4j-ollama: https://java2ai.com/docs/1.0.0-M6.1/models/ollama/?spm=5176.29160081.0.0.2856aa5cmbNZbo-->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
+            <version>1.0.0-M6</version>
+        </dependency>
 
         <!-- AI结构化输出Json、XML -->
         <dependency>
@@ -97,7 +97,7 @@
             <version>4.38.0</version>
         </dependency>
 
-        <!-- 支持文件序列化记忆持久化的序列化 -->
+        <!-- 另一种方式：支持文件序列化记忆持久化的序列化 -->
         <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
@@ -111,11 +111,28 @@
         </dependency>
 
         <!-- 支持向量数据库 -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.ai</groupId>-->
+<!--            <artifactId>spring-ai-starter-vector-store-pgvector</artifactId>-->
+<!--            <version>1.0.0</version>-->
+<!--        </dependency>-->
+
+        <!-- 更加灵活的方式初始化向量数据库 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-vector-store-pgvector</artifactId>
+            <artifactId>spring-ai-pgvector-store</artifactId>
             <version>1.0.0</version>
         </dependency>
+
     </dependencies>
 
     <build>

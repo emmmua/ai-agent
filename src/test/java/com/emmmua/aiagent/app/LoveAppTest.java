@@ -47,4 +47,12 @@ class LoveAppTest {
         String answer = loveApp.chatWithRag(message, chatId);
         Assertions.assertNotNull(answer);
     }
+
+    @Test
+    void chatWithPgVector() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "我正在学习，但是没有找到相关的资料，你能帮我找一下吗？";
+        String answer = loveApp.chatWithRag(message, chatId);
+        Assertions.assertNotNull(answer);
+    }
 }
