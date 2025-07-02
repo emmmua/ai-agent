@@ -1,13 +1,29 @@
 spring:
   application:
     name: ai-agent
-  profiles:
-    active: local
-#  ai:
-#    ollama:
-#      base-url: http://localhost:11434
-#      chat:
-#        model: gemma3:1b
+  ai:
+    dashscope:
+      api-key: sk-42a219775ffe4a068ec370b525a7dbce
+      chat:
+        options:
+          model: qwen-max
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: gemma3:1b
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536 # 可选：向量的维度
+        distance-type: COSINE_DISTANCE
+        max-document-batch-size: 10000 # 可选：每批次最大文档数量
+        schema-name: public   # 自定义 schema
+        table-name: vector_store  # 自定义表名
+        initialize-schema: true # 初始化表结构，自动创建表
+  datasource:
+    url: jdbc:postgresql://192.168.80.100:5432/mydb
+    username: root
+    password: KingRoot2025
 server:
   port: 8123
   servlet:
